@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import axios from "axios"
 import './App.css'
 export const Mainapp = () => {
 

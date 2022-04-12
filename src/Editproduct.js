@@ -11,7 +11,7 @@ export const Editproduct = ({ price, name, description, categoryId, id }) => {
         console.log(res.data);
     }
     const delete1 = async () => {
-        const res = await axios.delete(`http://localhost:8080/products/${id}`)
+        await axios.delete(`http://localhost:8080/products/${id}`)
     }
     const edit = () => {
         setbool(!bool)
