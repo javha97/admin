@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { Editproduct } from "./Editproduct";
-export const Addproduct = () => {
+export const Addproduct = ({ token }) => {
     const [pname, setpname] = useState('')
     const [price, setprice] = useState('')
     const [desc, setdesc] = useState('')
     const [catId, setcatId] = useState('')
     const [res, setres] = useState('')
+    console.log(token);
     const fn = async () => {
-        const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`)
+        const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`, {}, {
+            headers: {
+                "token": `${token}`
+            }
+        })
         console.log(data.data);
     }
     useEffect(() => {
