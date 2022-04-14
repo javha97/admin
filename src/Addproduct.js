@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { Editproduct } from "./Editproduct";
-export const Addproduct = ({ token }) => {
+export const Addproduct = () => {
     const [pname, setpname] = useState('')
     const [price, setprice] = useState('')
     const [desc, setdesc] = useState('')
     const [catId, setcatId] = useState('')
     const [res, setres] = useState('')
-    console.log(token);
+    const token=localStorage.getItem('token')
     const fn = async () => {
         const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`, {}, {
             headers: {
@@ -20,7 +20,6 @@ export const Addproduct = ({ token }) => {
         const getproducts = async () => {
             const res = await axios.get(`http://localhost:8080/`)
             setres(res.data)
-            console.log(res.data);
         }
         getproducts()
     }, [])

@@ -6,9 +6,9 @@ import { Addproduct } from './Addproduct';
 import { useState } from 'react';
 import axios from 'axios';
 export const App = () => {
-    const [token, settoken] = useState('')
     const [uname, setuname] = useState('')
     const [pass, setpass] = useState('')
+    const [token1,settoken1]=useState('')
     const fn = async () => {
         const res = await axios.post('http://localhost:8080/login', {}, {
             headers: {
@@ -17,15 +17,16 @@ export const App = () => {
             }
         }
         )
-        settoken(res.data);
+        settoken1(res.data)
+        localStorage.setItem('token', res.data)
     }
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Mainapp />}></Route>
                 <Route path='/addcate' element={<Addcategories />}></Route>
-                <Route path='/addproduct' element={<Addproduct token={token}/>}></Route>
-                <Route path='/login' element={<Login fn={fn} token={token} uname={uname} setuname={setuname} pass={pass} setpass={setpass} />}></Route>
+                <Route path='/addproduct' element={<Addproduct />}></Route>
+                <Route path='/login' element={<Login token1={token1} fn={fn} uname={uname} setuname={setuname} pass={pass} setpass={setpass} />}></Route>
             </Routes>
         </BrowserRouter>
     )
