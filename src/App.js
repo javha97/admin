@@ -8,7 +8,7 @@ import axios from 'axios';
 export const App = () => {
     const [uname, setuname] = useState('')
     const [pass, setpass] = useState('')
-    const [token1,settoken1]=useState('')
+    const [token1, settoken1] = useState('')
     const fn = async () => {
         const res = await axios.post('http://localhost:8080/login', {}, {
             headers: {
@@ -17,7 +17,7 @@ export const App = () => {
             }
         }
         )
-        settoken1(res.data)
+        settoken1(res)
         localStorage.setItem('token', res.data)
     }
     return (

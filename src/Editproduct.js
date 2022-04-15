@@ -1,11 +1,13 @@
 import { useState } from "react"
 import axios from "axios"
-export const Editproduct = ({ price, name, description, categoryId, id }) => {
+import "./App.css"
+export const Editproduct = ({ price, name, description, img, categoryId, id }) => {
     const [pname, setpname] = useState(name)
     const [price1, setprice1] = useState(price)
     const [desc, setdesc] = useState(description)
     const [bool, setbool] = useState(false)
     const [changecat, setchangecat] = useState(categoryId)
+    const myimg = `data:image/png;base64,${img}`
     const fn = async () => {
         const res = await axios.patch(`http://localhost:8080/products/${id}?name=${pname}&price=${price1}&description=${desc}&categoryId=${changecat}`)
         console.log(res.data);
@@ -30,6 +32,7 @@ export const Editproduct = ({ price, name, description, categoryId, id }) => {
                     <div>price:${price}</div>
                     <div>Description: {description}</div>
                     <div>categoryId: {categoryId}</div>
+                    <img src={myimg}></img>
                     <button onClick={edit}>Edit</button>
                     <button onClick={del}>Delete</button>
                 </>

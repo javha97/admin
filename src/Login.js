@@ -19,14 +19,14 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     const register = () => {
         setbool(!bool)
     }
-    console.log(token1)
     useEffect(() => {
+        console.log(token1.status);
         if (!token1) return
         console.log('hi');
-        if (token1.length >= 30) {
+        if (token1.status===200) {
             navigate('/addproduct')
         }
-    },[token1]);
+    }, [token1]);
 
     const login = () => {
         if (!uname || !pass) return

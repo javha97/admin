@@ -7,11 +7,13 @@ export const Addproduct = () => {
     const [desc, setdesc] = useState('')
     const [catId, setcatId] = useState('')
     const [res, setres] = useState('')
-    const token=localStorage.getItem('token')
+    const [imge, setimge] = useState('')
+    const token = localStorage.getItem('token')
     const fn = async () => {
         const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`, {}, {
             headers: {
-                "token": `${token}`
+                "token": `${token}`,
+                "img": `${imge}`
             }
         })
         console.log(data.data);
@@ -30,6 +32,15 @@ export const Addproduct = () => {
         setdesc('')
         setcatId('')
     }
+    const img = (e) => {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            setimge(reader.result)
+        }
+        reader.readAsDataURL(file);
+    }
+
     return (
         <>
             <div className="flex center container column">
@@ -38,10 +49,11 @@ export const Addproduct = () => {
                 <input placeholder="Price" type='number' onChange={(e) => setprice(e.target.value)} value={price}></input>
                 <input placeholder="Description" onChange={(e) => setdesc(e.target.value)} value={desc}></input>
                 <input placeholder="CategoryId" onChange={(e) => setcatId(e.target.value)} value={catId}></input>
+                <input type='file' onChange={(e) => img(e)}></input>
                 <button onClick={additem}>Addproduct</button>
             </div>
-            {res && res.map(({ price, description, name, categoryId, id }, i) => {
-                return <Editproduct key={i} id={id} price={price} description={description} name={name} categoryId={categoryId} />
+            {res && res.map(({ price, description, img, name, categoryId, id }, i) => {
+                return <Editproduct key={i} id={id} img={img} price={price} description={description} name={name} categoryId={categoryId} />
             })}
         </>
     )
