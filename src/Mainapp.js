@@ -7,7 +7,6 @@ export const Mainapp = () => {
     const token = localStorage.getItem('token')
     console.log(token);
     useEffect(() => {
-        console.log('hi');
         if (token === null) {
             navigate('/login')
         }

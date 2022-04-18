@@ -37,8 +37,8 @@ export const Addcategories = () => {
                 <input value={getpro} placeholder="SearchCategory" onChange={(e) => setgetpro(e.target.value)}></input>
                 <button onClick={findproduct}>Addcategory</button>
             </div>
-            {category.length === 0 ? <h4>...isLoading</h4> : category.map(({categoryId,price,name,description,id}, i) => {
-                return <Editproduct categoryId={categoryId} name={name} id={id} price={price} description={description} key={i}  />
+            {category.length === 0 ? <h4>...isLoading</h4> : category.map(({categoryId,img,price,name,description,id}, i) => {
+                return <Editproduct categoryId={categoryId} name={name}  img={img} id={id} price={price} description={description} key={i}  />
             })}
         </>
     )

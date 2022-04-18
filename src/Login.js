@@ -22,8 +22,7 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     useEffect(() => {
         console.log(token1.status);
         if (!token1) return
-        console.log('hi');
-        if (token1.status===200) {
+        if (token1.status === 200) {
             navigate('/addproduct')
         }
     }, [token1]);
@@ -34,6 +33,9 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     }
     const reg = () => {
         registerfn()
+    }
+    if(uname){
+    localStorage.setItem('uname' , uname)
     }
     return (
         <>

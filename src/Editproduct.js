@@ -7,13 +7,21 @@ export const Editproduct = ({ price, name, description, img, categoryId, id }) =
     const [desc, setdesc] = useState(description)
     const [bool, setbool] = useState(false)
     const [changecat, setchangecat] = useState(categoryId)
-    const myimg = `data:image/png;base64,${img}`
+    const username = localStorage.getItem('uname')
     const fn = async () => {
-        const res = await axios.patch(`http://localhost:8080/products/${id}?name=${pname}&price=${price1}&description=${desc}&categoryId=${changecat}`)
+        const res = await axios.patch(`http://localhost:8080/products/${id}?name=${pname}&price=${price1}&description=${desc}&categoryId=${changecat}`, {}, {
+            headers: {
+                "uname": `${username}`
+            }
+        })
         console.log(res.data);
     }
     const delete1 = async () => {
-        await axios.delete(`http://localhost:8080/products/${id}`)
+        await axios.delete(`http://localhost:8080/products/${id}`, {
+            headers: {
+                "uname": `${username}`
+            }
+        })
     }
     const edit = () => {
         setbool(!bool)
@@ -32,7 +40,7 @@ export const Editproduct = ({ price, name, description, img, categoryId, id }) =
                     <div>price:${price}</div>
                     <div>Description: {description}</div>
                     <div>categoryId: {categoryId}</div>
-                    <img src={myimg}></img>
+                    <img src={`http://localhost:8080/${img}.jpeg`}></img>
                     <button onClick={edit}>Edit</button>
                     <button onClick={del}>Delete</button>
                 </>

@@ -9,14 +9,19 @@ export const Addproduct = () => {
     const [res, setres] = useState('')
     const [imge, setimge] = useState('')
     const token = localStorage.getItem('token')
+    const username = localStorage.getItem('uname')
     const fn = async () => {
-        const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`, {}, {
+        const data = await axios.post(`http://localhost:8080/products?name=${pname}&price=${price}&description=${desc}&categoryId=${catId}`, {
+            body: {
+                "img": `${imge}`,
+            }
+        }, {
             headers: {
                 "token": `${token}`,
-                "img": `${imge}`
+                "uname": `${username}`
             }
         })
-        console.log(data.data);
+        alert(data.data)
     }
     useEffect(() => {
         const getproducts = async () => {
@@ -40,7 +45,7 @@ export const Addproduct = () => {
         }
         reader.readAsDataURL(file);
     }
-
+    console.log(res);
     return (
         <>
             <div className="flex center container column">
