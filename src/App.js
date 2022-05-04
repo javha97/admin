@@ -25,7 +25,7 @@ export const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Mainapp />}></Route>
-                <Route path='/addcate' element={<Addcategories />}></Route>
+                <Route path='/AddCategory' element={<Addcategories />}></Route>
                 <Route path='/addproduct' element={<Addproduct/>}></Route>
                 <Route path='/login' element={<Login token1={token1} fn={fn} uname={uname} setuname={setuname} pass={pass} setpass={setpass} />}></Route>
             </Routes>

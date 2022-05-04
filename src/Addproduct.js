@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from 'axios'
-import { Editproduct } from "./Editproduct";
 export const Addproduct = () => {
     const [pname, setpname] = useState('')
     const [price, setprice] = useState('')
     const [desc, setdesc] = useState('')
     const [catId, setcatId] = useState('')
-    const [res, setres] = useState('')
     const [imge, setimge] = useState('')
     const token = localStorage.getItem('token')
     const username = localStorage.getItem('uname')
@@ -23,13 +21,6 @@ export const Addproduct = () => {
         })
         alert(data.data)
     }
-    useEffect(() => {
-        const getproducts = async () => {
-            const res = await axios.get(`http://localhost:8080/`)
-            setres(res.data)
-        }
-        getproducts()
-    }, [])
     const additem = () => {
         fn()
         setpname('')
@@ -45,7 +36,7 @@ export const Addproduct = () => {
         }
         reader.readAsDataURL(file);
     }
-    console.log(res);
+    // console.log(res);
     return (
         <>
             <div className="flex center container column">
@@ -57,9 +48,7 @@ export const Addproduct = () => {
                 <input type='file' onChange={(e) => img(e)}></input>
                 <button onClick={additem}>Addproduct</button>
             </div>
-            {res && res.map(({ price, description, img, name, categoryId, id }, i) => {
-                return <Editproduct key={i} id={id} img={img} price={price} description={description} name={name} categoryId={categoryId} />
-            })}
+
         </>
     )
 }

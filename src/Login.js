@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import { TextField } from "@mui/material"
 import { useEffect, useState } from "react"
+import { Button } from "@mui/material"
 import axios from "axios"
 export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     const navigate = useNavigate()
@@ -34,8 +36,8 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     const reg = () => {
         registerfn()
     }
-    if(uname){
-    localStorage.setItem('uname' , uname)
+    if (uname) {
+        localStorage.setItem('uname', uname)
     }
     return (
         <>
@@ -43,20 +45,47 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
                 <div className='flex center container column'>
                     {!bool ? <>
                         <h3>Login</h3>
-                        <input placeholder='Username' value={uname} onChange={(e) => setuname(e.target.value)}></input>
-                        <input placeholder='Password' type='password' value={pass} onChange={(e) => setpass(e.target.value)}></input>
-                        <button onClick={login}>Login</button>
+                        <TextField
+                            id="outlined-name"
+                            label="Username"
+                            value={uname}
+                            sx={{ width: "254px" }}
+                            onChange={(e) => setuname(e.target.value)}
+                        />
+                        <TextField
+                            id="outlined-name"
+                            label="Password"
+                            value={pass}
+                            margin="dense"
+                            sx={{ width: "254px" }}
+                            onChange={(e) => setpass(e.target.value)}
+                        />
+                      <Button variant="contained" sx={{marginTop: "10px"}}onClick={login}>Login</Button>
                         <div>
-                            <button onClick={register} className='noback'>register</button>
+                        <Button onClick={register}>Register</Button>
                         </div>  </>
                         :
                         <>
                             <h3>Register</h3>
-                            <input placeholder='Create Username' value={cname} onChange={(e) => setcname(e.target.value)}></input>
-                            <input placeholder='Create Password' type='password' value={cpass} onChange={(e) => setcpass(e.target.value)}></input>
-                            <button onClick={reg}>Register</button>
+                            <TextField
+                                id="outlined-name"
+                                label="Create Username"
+                                value={cname}
+                                margin="dense"
+                                sx={{ width: "254px" }}
+                                onChange={(e) => setcname(e.target.value)}
+                            />
+                            <TextField
+                                id="outlined-name"
+                                label="Create Password"
+                                value={cpass}
+                                margin="dense"
+                                sx={{ width: "254px" }}
+                                onChange={(e) => setcpass(e.target.value)}
+                            />
+                            <Button variant="contained" sx={{marginTop: "10px"}} onClick={reg}>Register</Button>
                             <div>
-                                <button className="noback" onClick={register}>Login</button>
+                            <Button onClick={register}>Login</Button>
                             </div>
                         </>
                     }

@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom"
-import './App.css'
-import { useEffect } from "react"
+import { Items } from "./Items";
+import { useEffect, useState } from "react"
+import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton, Toolbar, AppBar, Typography, Button, Box } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import { Sidebar } from "./Sidebar";
 export const Mainapp = () => {
+    const [sidebar, setsidebar] = useState(false)
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
     console.log(token);
@@ -10,18 +13,32 @@ export const Mainapp = () => {
         if (token === null) {
             navigate('/login')
         }
-    },[token])
+    }, [token])
+    console.log(sidebar);
     return (
-        <div className="flex column  center">
-            <Link to='/addcate'>
-                <div>AddCategory</div>
-            </Link>
-            <Link to='/addproduct'>
-                <div>Addproduct</div>
-            </Link>
-            <Link to='/login'>
-                <div>Login</div>
-            </Link>
-        </div>
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => setsidebar(true)}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            Admin
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <Sidebar sidebar={sidebar} setsidebar={setsidebar} />
+         <Items/>
+
+        </>
     )
 }
