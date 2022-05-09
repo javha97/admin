@@ -3,7 +3,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton, Toolbar, AppBar, Typography, Button, Box, } from "@mui/material"
 import { useNavigate, Link } from "react-router-dom"
 import { Sidebar } from "./Sidebar";
-import "./app.css"
 export const Mainapp = () => {
     const [sidebar, setsidebar] = useState(false)
     const navigate = useNavigate()
