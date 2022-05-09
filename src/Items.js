@@ -41,7 +41,7 @@ export const Items = () => {
             type: 'string',
             width: 300,
             editable: true,
-            renderCell: (params) => <img src={params.value} style={{ objectFit: "cover", width: "200px", height: "140px" }} />,
+            renderCell: (params) => <img src={params.value} alt="#" style={{ objectFit: "cover", width: "200px", height: "140px" }} />,
         },
         {
             field: 'price',
