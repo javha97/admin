@@ -3,6 +3,7 @@ import { Login } from './Login';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { Addcategories } from './Addcategories';
 import { Addproduct } from './Addproduct';
+import {Showproducts} from './Showproducts'
 import { useState } from 'react';
 import axios from 'axios';
 export const App = () => {
@@ -28,6 +29,7 @@ export const App = () => {
                 <Route path='/AddCategory' element={<Addcategories />}></Route>
                 <Route path='/addproduct' element={<Addproduct/>}></Route>
                 <Route path='/login' element={<Login token1={token1} fn={fn} uname={uname} setuname={setuname} pass={pass} setpass={setpass} />}></Route>
+                <Route path="/showproducts" element={<Showproducts/>}></Route>
             </Routes>
         </BrowserRouter>
     )

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { TextField } from "@mui/material"
 import { useEffect, useState } from "react"
-import { Button } from "@mui/material"
+import { Button, Box, Typography } from "@mui/material"
 import axios from "axios"
 export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     const navigate = useNavigate()
@@ -41,56 +41,62 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
     }
     return (
         <>
-            <div className='flex center'>
-                <div className='flex center container column'>
-                    {!bool ? <>
-                        <h3>Login</h3>
-                        <TextField
-                            id="outlined-name"
-                            label="Username"
-                            value={uname}
-                            sx={{ width: "254px" }}
-                            onChange={(e) => setuname(e.target.value)}
-                        />
-                        <TextField
-                            id="outlined-name"
-                            label="Password"
-                            value={pass}
-                            margin="dense"
-                            sx={{ width: "254px" }}
-                            onChange={(e) => setpass(e.target.value)}
-                        />
-                      <Button variant="contained" sx={{marginTop: "10px"}}onClick={login}>Login</Button>
-                        <div>
-                        <Button onClick={register}>Register</Button>
-                        </div>  </>
-                        :
-                        <>
-                            <h3>Register</h3>
+            <Box sx={{ display: "flex", alignItems: "center", width: "100vw", height: "100vh" }}>
+                <Box sx={{ width: "400px", height: "400px", border: "1px solid black", display: "flex", alignItems: "center", margin: "0 auto" }}>
+                    <Box sx={{ display: "flex", flexDirection: "column", width: "300px", margin: "0 auto" }}>
+                        {!bool ? <>
+                            <Typography variant="h4" component="h2">
+                                Login
+                            </Typography>
                             <TextField
-                                id="outlined-name"
-                                label="Create Username"
-                                value={cname}
                                 margin="dense"
-                                sx={{ width: "254px" }}
-                                onChange={(e) => setcname(e.target.value)}
+                                id="fullWidth"
+                                fullWidth
+                                label="Username"
+                                value={uname}
+                                onChange={(e) => setuname(e.target.value)}
                             />
                             <TextField
+                                fullWidth
                                 id="outlined-name"
-                                label="Create Password"
-                                value={cpass}
+                                label="Password"
+                                value={pass}
                                 margin="dense"
-                                sx={{ width: "254px" }}
-                                onChange={(e) => setcpass(e.target.value)}
+                                onChange={(e) => setpass(e.target.value)}
                             />
-                            <Button variant="contained" sx={{marginTop: "10px"}} onClick={reg}>Register</Button>
-                            <div>
-                            <Button onClick={register}>Login</Button>
-                            </div>
+                            <Button variant="contained" sx={{ marginTop: "10px", height: "50px" }} onClick={login}>Login</Button>
+
+                            <Button sx={{marginTop: "10px"}} onClick={register}>Register</Button>
                         </>
-                    }
-                </div>
-            </div>
+
+                            :
+                            <>
+                                <Typography variant="h4" component="h2">
+                                    Register
+                                </Typography>
+                                <TextField
+                                    id="outlined-name"
+                                    label="Create Username"
+                                    value={cname}
+                                    margin="dense"
+                                    onChange={(e) => setcname(e.target.value)}
+                                />
+                                <TextField
+                                    id="outlined-name"
+                                    label="Create Password"
+                                    value={cpass}
+                                    margin="dense"
+                                    onChange={(e) => setcpass(e.target.value)}
+                                />
+                                <Button variant="contained" sx={{ marginTop: "10px", height: "50px" }} onClick={reg}>Register</Button>
+                                <Button sx={{marginTop: "10px"}} onClick={register}>Login</Button>
+                            </>
+                        }
+                    </Box>
+                </Box>
+            </Box>
+
+
         </>
     )
 }

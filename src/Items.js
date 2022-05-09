@@ -1,6 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { Box } from '@mui/system';
 export const Items = () => {
     const [rows, setres] = useState('')
 
@@ -51,7 +52,7 @@ export const Items = () => {
         },
     ]
     return (
-        <div style={{ height: 600, width: '900px' }}>
+        <Box style={{ height: 600, width: '900px', display: "flex", margin: "0 auto" }}>
             {rows &&
                 <DataGrid
                     rows={rows}
@@ -63,6 +64,6 @@ export const Items = () => {
                     disableSelectionOnClick
                 />
             }
-        </div>
+        </Box>
     )
 } 

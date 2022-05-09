@@ -1,11 +1,11 @@
 import { Box, } from "@mui/system";
-import { List, ListItem, ListItemText, Drawer, Button, Divider } from "@mui/material";
+import { List, ListItem, ListItemText, Drawer, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import MailIcon from "@mui/icons-material/Menu";
-import "./App.css";
+import "./app.css"
 import React from "react";
 export const Sidebar = ({ setsidebar, sidebar }) => {
-    const list = ['AddCategory', 'Addproduct', 'Login']
+    const list = ['AddCategory', 'Addproduct', 'Login', "Showproducts"]
     const toggleDrawer = () => {
         setsidebar(!sidebar)
     };

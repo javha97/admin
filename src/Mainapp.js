@@ -1,9 +1,9 @@
-import { Items } from "./Items";
 import { useEffect, useState } from "react"
 import MenuIcon from "@mui/icons-material/Menu";
-import { IconButton, Toolbar, AppBar, Typography, Button, Box } from "@mui/material"
-import { useNavigate } from "react-router-dom"
+import { IconButton, Toolbar, AppBar, Typography, Button, Box, } from "@mui/material"
+import { useNavigate, Link } from "react-router-dom"
 import { Sidebar } from "./Sidebar";
+import "./app.css"
 export const Mainapp = () => {
     const [sidebar, setsidebar] = useState(false)
     const navigate = useNavigate()
@@ -32,13 +32,15 @@ export const Mainapp = () => {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             Admin
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Link to='/login'>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "white" }}>
+                                Login
+                            </Typography>
+                        </Link>
                     </Toolbar>
                 </AppBar>
             </Box>
             <Sidebar sidebar={sidebar} setsidebar={setsidebar} />
-         <Items/>
-
         </>
     )
 }

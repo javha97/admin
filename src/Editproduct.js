@@ -1,6 +1,6 @@
 import { useState } from "react"
+import { TextField, Button, Typography, Box } from "@mui/material"
 import axios from "axios"
-import "./App.css"
 export const Editproduct = ({ price, name, description, img, categoryId, id }) => {
     const [pname, setpname] = useState(name)
     const [price1, setprice1] = useState(price)
@@ -34,26 +34,38 @@ export const Editproduct = ({ price, name, description, img, categoryId, id }) =
         setbool(!bool)
     }
     return (
-        <div className="flex center container column">
-            {!bool ?
-                <>  <div>ProductName:{name}</div>
-                    <div>price:${price}</div>
-                    <div>Description: {description}</div>
-                    <div>categoryId: {categoryId}</div>
-                    <img src={`http://localhost:8080/${img}.jpeg`}></img>
-                    <button onClick={edit}>Edit</button>
-                    <button onClick={del}>Delete</button>
-                </>
-                :
-                <>
-                    <input value={pname} placeholder="Change ProductName" onChange={(e) => setpname(e.target.value)}></input>
-                    <input value={price1} placeholder="Change Price" type='number' onChange={(e) => setprice1(e.target.value)}></input>
-                    <input value={desc} placeholder="CHange Description" onChange={(e) => setdesc(e.target.value)}></input>
-                    <input value={changecat} placeholder="Change Category" onChange={(e) => setchangecat(e.target.value)}></input>
-                    <button onClick={savechanges}>Save changes</button>
-                </>
-            }
+        <>       {!bool ?
+            <>
+                <Box sx={{marginTop: "20px"}}>
+                    <Typography variant="h6" component="h2">
+                        ProductNames: {name}
+                    </Typography>
+                    <Typography variant="h6" component="h2">
+                        Price:${price}
+                    </Typography>
+                    <Typography variant="h6" component="h2">
+                        Description: {description}
+                    </Typography>
+                    <Typography variant="h6" component="h2">
+                        CategoryId: {categoryId}
+                    </Typography>
+                    <img src={`http://localhost:8080/${img}.jpeg`} style={{ width: "400px" }}></img>
+                    <Button sx={{ width: "200px" }} variant="text" onClick={edit}>Edit</Button>
+                    <Button variant="text" sx={{ width: "200px" }} onClick={del}>Delete</Button>
+                </Box>
+            </>
+            :
+            <Box sx={{marginTop: "20px", display: "flex" , flexDirection: "column"}}>
+                <TextField margin="dense" label="Change ProductName" variant="outlined" value={pname} onChange={(e) => setpname(e.target.value)} />
+                <TextField margin="dense" label="Change Price" variant="outlined" value={price1} onChange={(e) => setprice1(e.target.value)} />
+                <TextField margin="dense" label="Change Description" variant="outlined" value={desc} onChange={(e) => setdesc(e.target.value)} />
+                <TextField margin="dense" label="Change Category" variant="outlined" value={changecat} onChange={(e) => setchangecat(e.target.value)} />
+                <Button variant="contained" sx={{ width: "400px" }} onClick={savechanges}>Save changes</Button>
+            </Box>
+        }
+        </>
 
-        </div>
+
+
     )
 }
