@@ -46,7 +46,7 @@ export const Login = ({ fn, pass, setpass, token1, uname, setuname }) => {
                     <Box sx={{ display: "flex", flexDirection: "column", width: "300px", margin: "0 auto" }}>
                         {!bool ? <>
                             <Typography variant="h4" component="h2">
-                                Login
+                                Loginlmao
                             </Typography>
                             <TextField
                                 margin="dense"
